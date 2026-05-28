@@ -5,125 +5,169 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="A responsive modern web app starter ready for GitHub-based development."
+      content="PMO, business improvement, infrastructure operations, and DX support portfolio."
     />
-    <title>Anywhere App</title>
+    <title>PMO Portfolio</title>
     <link rel="stylesheet" href="src/styles.css" />
   </head>
   <body>
-    <div class="app-shell">
-      <aside class="sidebar" aria-label="Primary">
-        <a class="brand" href="#" aria-label="Anywhere App home">
-          <span class="brand-mark">A</span>
-          <span>
-            <strong>Anywhere</strong>
-            <small>Web App</small>
-          </span>
-        </a>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="PMO Portfolio home">
+        <span class="brand-mark">PM</span>
+        <span>Portfolio</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#strengths">Strengths</a>
+        <a href="#works">Works</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
 
-        <nav class="nav-list" aria-label="Sections">
-          <a class="nav-link active" href="#dashboard" aria-current="page">Dashboard</a>
-          <a class="nav-link" href="#projects">Projects</a>
-          <a class="nav-link" href="#insights">Insights</a>
-          <a class="nav-link" href="#settings">Settings</a>
-        </nav>
-      </aside>
+    <main id="top">
+      <section class="hero-section">
+        <div class="hero-media" aria-hidden="true">
+          <img src="assets/portfolio-hero.png" alt="" />
+        </div>
+        <div class="hero-content">
+          <p class="eyebrow">PMO / Business Improvement / Infrastructure</p>
+          <h1>現場課題を整理し、プロジェクトを前へ進める。</h1>
+          <p class="hero-lead">
+            インフラ運用、業務改善、PMO支援を軸に、要件整理・課題管理・業務フロー可視化・テスト推進まで、現場とプロジェクトの間をつなぎます。
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#works">実績を見る</a>
+            <a class="button button-secondary" href="#contact">Contact</a>
+          </div>
+        </div>
+      </section>
 
-      <main class="main-content">
-        <header class="topbar">
+      <section class="intro-strip" aria-label="Profile summary">
+        <div>
+          <span>Focus</span>
+          <strong>システム導入支援</strong>
+        </div>
+        <div>
+          <span>Role</span>
+          <strong>PMO / SE / 業務改善</strong>
+        </div>
+        <div>
+          <span>Style</span>
+          <strong>整理・可視化・推進</strong>
+        </div>
+      </section>
+
+      <section class="section" id="strengths">
+        <div class="section-heading">
+          <p class="eyebrow">Strengths</p>
+          <h2>現場理解から、進め方を設計する。</h2>
+        </div>
+        <div class="strength-grid">
+          <article>
+            <span>01</span>
+            <h3>要件と課題の整理</h3>
+            <p>関係者の認識差をほどき、業務要件・課題・Q&A・テスト観点を扱いやすい形へ整理します。</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>業務改善と自動化</h3>
+            <p>Excel VBA、Power Automate、Microsoft 365を活用し、転記や帳票作成などの手作業を削減します。</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>インフラ運用の実行力</h3>
+            <p>PCリプレース、Windows移行、Active Directory、無線LAN調査など、現場作業を伴う案件にも対応します。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section works-section" id="works">
+        <div class="section-heading">
+          <p class="eyebrow">Selected works</p>
+          <h2>匿名化したプロジェクト実績。</h2>
+        </div>
+        <div class="timeline">
+          <article class="work-item">
+            <div class="work-meta">2025 - 2026 / PMO</div>
+            <div>
+              <h3>鉄道会社向け 旅客案内情報システム取替支援</h3>
+              <p>要件整理、課題管理、シナリオテスト支援、ドキュメント整備を担当。駅・表示機・案内情報に関わる確認観点を整理し、プロジェクト推進を支援。</p>
+              <ul>
+                <li>課題・Q&A管理</li>
+                <li>テスト計画、シナリオ整理</li>
+                <li>関係者間の情報整理</li>
+              </ul>
+            </div>
+          </article>
+          <article class="work-item">
+            <div class="work-meta">2024 - 2025 / PMO, SE</div>
+            <div>
+              <h3>製造業向け 基幹システム刷新支援</h3>
+              <p>ERP刷新に伴う要件定義支援、Microsoft 365基盤整備、VBAによる帳票発行効率化、入力チェック機能の構築を担当。</p>
+              <ul>
+                <li>手入力削減 60%</li>
+                <li>転記作業 月30時間削減</li>
+                <li>VBAによる月20時間削減</li>
+              </ul>
+            </div>
+          </article>
+          <article class="work-item">
+            <div class="work-meta">2022 - 2024 / Sub leader</div>
+            <div>
+              <h3>企業向け PCリプレース / Windows移行</h3>
+              <p>約12,000台規模のWindows 11移行対応で、キッティング効率化、マスタ展開、進捗管理、メンバー支援を担当。</p>
+              <ul>
+                <li>PCセットアップ標準化</li>
+                <li>Bat作成による作業効率化</li>
+                <li>チーム進捗管理</li>
+              </ul>
+            </div>
+          </article>
+          <article class="work-item">
+            <div class="work-meta">2021 - 2022 / DX support</div>
+            <div>
+              <h3>自治体向け CIO補佐・窓口DX支援</h3>
+              <p>業務改善提案、業務フロー整理、課題管理、チケット管理、関係部署との調整を担当。</p>
+              <ul>
+                <li>改善対象 10業務</li>
+                <li>Backlogによるチケット管理</li>
+                <li>年間利用者 約5,000人規模</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section skills-section" id="skills">
+        <div class="section-heading">
+          <p class="eyebrow">Skills</p>
+          <h2>推進と改善を支える技術。</h2>
+        </div>
+        <div class="skill-columns">
           <div>
-            <p class="eyebrow">Responsive workspace</p>
-            <h1>どこからでも開発できるWebアプリ</h1>
+            <h3>Project</h3>
+            <p>要件定義、PMO、課題管理、QA管理、業務フロー整理、シナリオテスト支援、ドキュメント整備</p>
           </div>
-          <button class="primary-action" type="button" id="themeToggle">
-            <span aria-hidden="true">◐</span>
-            Theme
-          </button>
-        </header>
-
-        <section class="hero-panel" id="dashboard">
-          <div class="hero-copy">
-            <p class="eyebrow">Ready for GitHub</p>
-            <h2>スマホでもPCでも気持ちよく使える、モダンな開発ベース。</h2>
-            <p>
-              軽量なHTML、CSS、JavaScriptだけで構成しているので、GitHub PagesやCodespacesにも載せやすいスターターです。
-            </p>
-            <div class="hero-actions">
-              <a class="button button-primary" href="#projects">Start building</a>
-              <a class="button button-ghost" href="#insights">View status</a>
-            </div>
+          <div>
+            <h3>Tools</h3>
+            <p>Microsoft 365、SharePoint、Git、Backlog、Redmine、Power Automate、Entra ID、Active Directory</p>
           </div>
-
-          <div class="device-preview" aria-label="Mobile preview mockup">
-            <div class="phone-frame">
-              <div class="phone-status"></div>
-              <div class="mini-card">
-                <span class="mini-kicker">Today</span>
-                <strong>3 active tasks</strong>
-              </div>
-              <div class="mini-chart">
-                <span style="height: 42%"></span>
-                <span style="height: 68%"></span>
-                <span style="height: 51%"></span>
-                <span style="height: 82%"></span>
-                <span style="height: 63%"></span>
-              </div>
-              <div class="mini-row"></div>
-              <div class="mini-row short"></div>
-            </div>
+          <div>
+            <h3>Technology</h3>
+            <p>SQL、VBA、MySQL、Oracle Database、Windows Server 2016 / 2019、Windows 10 / 11</p>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section class="metrics-grid" aria-label="Key metrics">
-          <article class="metric-card">
-            <span>Performance</span>
-            <strong>98</strong>
-            <small>Static-first and fast to deploy</small>
-          </article>
-          <article class="metric-card">
-            <span>Responsive</span>
-            <strong>100%</strong>
-            <small>Fluid layouts from mobile to desktop</small>
-          </article>
-          <article class="metric-card">
-            <span>Setup</span>
-            <strong>0 deps</strong>
-            <small>Open the file or serve locally</small>
-          </article>
-        </section>
-
-        <section class="content-grid" id="projects">
-          <article class="workspace-panel">
-            <div class="section-heading">
-              <p class="eyebrow">Project flow</p>
-              <h2>開発の進め方</h2>
-            </div>
-            <div class="task-list" id="taskList"></div>
-          </article>
-
-          <article class="workspace-panel compact" id="insights">
-            <div class="section-heading">
-              <p class="eyebrow">Live state</p>
-              <h2>環境チェック</h2>
-            </div>
-            <dl class="status-list">
-              <div>
-                <dt>Viewport</dt>
-                <dd id="viewportSize">-</dd>
-              </div>
-              <div>
-                <dt>Mode</dt>
-                <dd id="themeState">Light</dd>
-              </div>
-              <div>
-                <dt>Deploy target</dt>
-                <dd>GitHub Pages</dd>
-              </div>
-            </dl>
-          </article>
-        </section>
-      </main>
-    </div>
+      <section class="contact-section" id="contact">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>業務改善やPMO支援の相談はこちら。</h2>
+          <p>公開用の連絡先は後から差し替えできます。まずはGitHubベースで更新しながら育てていきます。</p>
+        </div>
+        <a class="button button-primary" href="#top">Back to top</a>
+      </section>
+    </main>
 
     <script src="src/app.js"></script>
   </body>
