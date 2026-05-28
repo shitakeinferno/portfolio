@@ -31,12 +31,14 @@ python3 -m http.server 5173
 ├── demos
 │   └── optical-inventory.html
 │   └── queue-ticket-system.html
+│   └── member-lookup-system.html
 ├── index.html
 ├── src
 │   ├── app.js
 │   ├── optical-demo.css
 │   ├── optical-demo.js
 │   ├── queue-ticket-system.js
+│   ├── member-lookup-system.js
 │   └── styles.css
 ├── .devcontainer
 │   └── devcontainer.json
