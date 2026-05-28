@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A responsive modern web app starter ready for GitHub-based development."
+    />
+    <title>Anywhere App</title>
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Primary">
+        <a class="brand" href="#" aria-label="Anywhere App home">
+          <span class="brand-mark">A</span>
+          <span>
+            <strong>Anywhere</strong>
+            <small>Web App</small>
+          </span>
+        </a>
+
+        <nav class="nav-list" aria-label="Sections">
+          <a class="nav-link active" href="#dashboard" aria-current="page">Dashboard</a>
+          <a class="nav-link" href="#projects">Projects</a>
+          <a class="nav-link" href="#insights">Insights</a>
+          <a class="nav-link" href="#settings">Settings</a>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Responsive workspace</p>
+            <h1>どこからでも開発できるWebアプリ</h1>
+          </div>
+          <button class="primary-action" type="button" id="themeToggle">
+            <span aria-hidden="true">◐</span>
+            Theme
+          </button>
+        </header>
+
+        <section class="hero-panel" id="dashboard">
+          <div class="hero-copy">
+            <p class="eyebrow">Ready for GitHub</p>
+            <h2>スマホでもPCでも気持ちよく使える、モダンな開発ベース。</h2>
+            <p>
+              軽量なHTML、CSS、JavaScriptだけで構成しているので、GitHub PagesやCodespacesにも載せやすいスターターです。
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#projects">Start building</a>
+              <a class="button button-ghost" href="#insights">View status</a>
+            </div>
+          </div>
+
+          <div class="device-preview" aria-label="Mobile preview mockup">
+            <div class="phone-frame">
+              <div class="phone-status"></div>
+              <div class="mini-card">
+                <span class="mini-kicker">Today</span>
+                <strong>3 active tasks</strong>
+              </div>
+              <div class="mini-chart">
+                <span style="height: 42%"></span>
+                <span style="height: 68%"></span>
+                <span style="height: 51%"></span>
+                <span style="height: 82%"></span>
+                <span style="height: 63%"></span>
+              </div>
+              <div class="mini-row"></div>
+              <div class="mini-row short"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="metrics-grid" aria-label="Key metrics">
+          <article class="metric-card">
+            <span>Performance</span>
+            <strong>98</strong>
+            <small>Static-first and fast to deploy</small>
+          </article>
+          <article class="metric-card">
+            <span>Responsive</span>
+            <strong>100%</strong>
+            <small>Fluid layouts from mobile to desktop</small>
+          </article>
+          <article class="metric-card">
+            <span>Setup</span>
+            <strong>0 deps</strong>
+            <small>Open the file or serve locally</small>
+          </article>
+        </section>
+
+        <section class="content-grid" id="projects">
+          <article class="workspace-panel">
+            <div class="section-heading">
+              <p class="eyebrow">Project flow</p>
+              <h2>開発の進め方</h2>
+            </div>
+            <div class="task-list" id="taskList"></div>
+          </article>
+
+          <article class="workspace-panel compact" id="insights">
+            <div class="section-heading">
+              <p class="eyebrow">Live state</p>
+              <h2>環境チェック</h2>
+            </div>
+            <dl class="status-list">
+              <div>
+                <dt>Viewport</dt>
+                <dd id="viewportSize">-</dd>
+              </div>
+              <div>
+                <dt>Mode</dt>
+                <dd id="themeState">Light</dd>
+              </div>
+              <div>
+                <dt>Deploy target</dt>
+                <dd>GitHub Pages</dd>
+              </div>
+            </dl>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="src/app.js"></script>
+  </body>
+</html>
