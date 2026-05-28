@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Contact lens inventory system mock with category stock, expiration, reservation, and reorder alerts."
+    />
+    <title>Contact Lens Inventory System Mock</title>
+    <link rel="stylesheet" href="../src/optical-demo.css" />
+  </head>
+  <body>
+    <div class="app-frame">
+      <aside class="side-panel">
+        <a class="brand" href="optical-inventory.html">
+          <span class="brand-mark">CL</span>
+          <span>
+            <strong>Contact Inventory</strong>
+            <small>Requirement mock</small>
+          </span>
+        </a>
+        <nav class="side-nav" aria-label="Contact inventory navigation">
+          <a class="active" href="#summary">Summary</a>
+          <a href="#stock">Stock</a>
+          <a href="#reserve">Reserve</a>
+          <a href="#orders">Orders</a>
+          <a href="#requirements">Requirements</a>
+        </nav>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar detail-topbar">
+          <div>
+            <p class="eyebrow">Contact lens inventory system</p>
+            <h1>コンタクト在庫をカテゴリ化し、箱数・期限・取り置き・補充を管理する</h1>
+          </div>
+          <div class="top-actions">
+            <button type="button" class="ghost-button" id="resetContact">リセット</button>
+            <button type="button" class="primary-button" id="reserveContact">取り置き登録</button>
+          </div>
+        </header>
+
+        <section class="system-flow" aria-label="Contact inventory flow">
+          <article>
+            <span>1</span>
+            <strong>カテゴリ管理</strong>
+            <p>1day、2week、乱視用、遠近用、カラーなどのカテゴリで在庫を分類。</p>
+          </article>
+          <article>
+            <span>2</span>
+            <strong>度数・規格管理</strong>
+            <p>PWR、BC、DIA、CYL、AXISを商品ごとに管理し、会員カルテと照合。</p>
+          </article>
+          <article>
+            <span>3</span>
+            <strong>期限・箱数管理</strong>
+            <p>使用期限、箱数、取り置き数、販売可能数を確認。</p>
+          </article>
+          <article>
+            <span>4</span>
+            <strong>補充・発注</strong>
+            <p>不足、期限近、定期購入候補から補充リストを作成。</p>
+          </article>
+        </section>
+
+        <section class="kpi-grid" id="summary">
+          <article>
+            <span>不足カテゴリ</span>
+            <strong id="contactAlertCount">6 SKU</strong>
+            <small>至急 2件</small>
+          </article>
+          <article>
+            <span>期限注意</span>
+            <strong>12 箱</strong>
+            <small>90日以内</small>
+          </article>
+          <article>
+            <span>取り置き</span>
+            <strong id="reservedBoxes">9 箱</strong>
+            <small>受取待ち 4名</small>
+          </article>
+          <article>
+            <span>発注候補</span>
+            <strong>24 箱</strong>
+            <small>定期補充分含む</small>
+          </article>
+        </section>
+
+        <section class="lens-layout">
+          <article class="panel lens-filter-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Category</p>
+                <h2>コンタクトカテゴリ</h2>
+              </div>
+              <span class="live-badge" id="contactState">Monitoring</span>
+            </div>
+            <div class="search-mode-grid">
+              <button type="button" class="active">1day</button>
+              <button type="button">2week</button>
+              <button type="button">乱視用</button>
+              <button type="button">遠近用</button>
+            </div>
+            <div class="device-spec-grid">
+              <div><span>規格</span><strong>PWR / BC / DIA</strong></div>
+              <div><span>乱視</span><strong>CYL / AXIS</strong></div>
+              <div><span>単位</span><strong>箱数・枚数</strong></div>
+            </div>
+          </article>
+
+          <article class="panel shortage-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Contact alerts</p>
+                <h2>不足・期限アラート</h2>
+              </div>
+            </div>
+            <div class="alert-list">
+              <article>
+                <span class="pill danger">至急</span>
+                <strong>1day Moist / PWR -3.50</strong>
+                <p>在庫 3箱 / 最小 8箱 / 取り置き 2箱 / 推奨発注 12箱</p>
+              </article>
+              <article>
+                <span class="pill warn">期限注意</span>
+                <strong>2week Clear / PWR -2.75</strong>
+                <p>期限 2026-08 / 在庫 7箱 / 優先販売候補</p>
+              </article>
+              <article>
+                <span class="pill warn">補充</span>
+                <strong>Toric 1day / PWR -2.00 CYL -0.75 AXIS 180</strong>
+                <p>在庫 2箱 / 最小 5箱 / 定期購入候補あり</p>
+              </article>
+            </div>
+          </article>
+        </section>
+
+        <section class="panel lens-matrix-panel" id="stock">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Contact stock</p>
+              <h2>コンタクト在庫一覧</h2>
+            </div>
+            <span class="live-badge">Category stock</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>商品</th>
+                  <th>カテゴリ</th>
+                  <th>PWR</th>
+                  <th>BC/DIA</th>
+                  <th>在庫</th>
+                  <th>取り置き</th>
+                  <th>期限</th>
+                  <th>状態</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1day Moist</td>
+                  <td>1day</td>
+                  <td>-3.50</td>
+                  <td>8.7 / 14.2</td>
+                  <td id="contactStockCritical">3箱</td>
+                  <td id="contactReservedRow">2箱</td>
+                  <td>2027-02</td>
+                  <td><span class="pill danger">不足</span></td>
+                </tr>
+                <tr>
+                  <td>2week Clear</td>
+                  <td>2week</td>
+                  <td>-2.75</td>
+                  <td>8.6 / 14.0</td>
+                  <td>7箱</td>
+                  <td>1箱</td>
+                  <td>2026-08</td>
+                  <td><span class="pill warn">期限注意</span></td>
+                </tr>
+                <tr>
+                  <td>Toric 1day</td>
+                  <td>乱視用</td>
+                  <td>-2.00 / CYL -0.75 / AXIS 180</td>
+                  <td>8.5 / 14.5</td>
+                  <td>2箱</td>
+                  <td>0箱</td>
+                  <td>2027-06</td>
+                  <td><span class="pill warn">補充</span></td>
+                </tr>
+                <tr>
+                  <td>Multifocal 1day</td>
+                  <td>遠近用</td>
+                  <td>-1.50 / ADD +1.50</td>
+                  <td>8.6 / 14.1</td>
+                  <td>11箱</td>
+                  <td>3箱</td>
+                  <td>2027-04</td>
+                  <td><span class="pill ok">適正</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel order-status-panel" id="reserve">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Reservation</p>
+              <h2>取り置き・会員紐づけ</h2>
+            </div>
+            <span class="live-badge" id="reserveState">Ready</span>
+          </div>
+          <div class="history-list">
+            <article>
+              <div>
+                <strong>Member A-1024 / 1day Moist -3.50</strong>
+                <p>2箱取り置き / 受取予定 06/02 / 電話連絡済み</p>
+              </div>
+              <span class="pill warn">受取待ち</span>
+            </article>
+            <article>
+              <div>
+                <strong>Member F-2048 / Multifocal 1day</strong>
+                <p>3箱取り置き / 定期購入候補 / 次回提案あり</p>
+              </div>
+              <span class="pill ok">準備済</span>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel order-status-panel" id="orders">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Purchase status</p>
+              <h2>補充・発注ステータス</h2>
+            </div>
+            <span class="live-badge" id="contactOrderState">Draft ready</span>
+          </div>
+          <div class="history-list">
+            <article>
+              <div>
+                <strong>PO-CL-20260528-001 / 1day Moist</strong>
+                <p>12箱 / 未発注 / 不足アラートから作成</p>
+              </div>
+              <span class="pill danger" id="contactOrderStatus">未発注</span>
+            </article>
+            <article>
+              <div>
+                <strong>PO-CL-20260527-003 / Toric 1day</strong>
+                <p>6箱 / 入荷待ち / メーカー回答済み</p>
+              </div>
+              <span class="pill ok">入荷待ち</span>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel requirements-panel" id="requirements">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Requirement notes</p>
+              <h2>コンタクト在庫管理の要件メモ</h2>
+            </div>
+          </div>
+          <div class="requirements-grid">
+            <article>
+              <h3>カテゴリ管理</h3>
+              <ul>
+                <li>1day、2week、乱視用、遠近用、カラー</li>
+                <li>PWR、BC、DIA、CYL、AXISを保持</li>
+                <li>会員カルテの度数情報と照合</li>
+              </ul>
+            </article>
+            <article>
+              <h3>期限・数量</h3>
+              <ul>
+                <li>箱数、枚数、取り置き数を管理</li>
+                <li>使用期限が近い在庫を警告</li>
+                <li>販売可能数から取り置きを除外</li>
+              </ul>
+            </article>
+            <article>
+              <h3>補充・発注</h3>
+              <ul>
+                <li>不足アラートから発注候補を作成</li>
+                <li>定期購入予定から補充を予測</li>
+                <li>メーカー別帳票/メールへ連携</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="../src/contact-inventory-system.js"></script>
+  </body>
+</html>
