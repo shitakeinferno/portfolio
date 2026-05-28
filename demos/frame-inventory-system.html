@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Frame inventory system mock for QR tags, store stock, cross-store stock, and sales allocation."
+    />
+    <title>Frame Inventory System Mock</title>
+    <link rel="stylesheet" href="../src/optical-demo.css" />
+  </head>
+  <body>
+    <div class="app-frame">
+      <aside class="side-panel">
+        <a class="brand" href="optical-inventory.html">
+          <span class="brand-mark">FI</span>
+          <span>
+            <strong>Frame Inventory</strong>
+            <small>Requirement mock</small>
+          </span>
+        </a>
+        <nav class="side-nav" aria-label="Frame inventory navigation">
+          <a class="active" href="#scan">QR Scan</a>
+          <a href="#stock">Stock</a>
+          <a href="#stores">Stores</a>
+          <a href="#allocation">Allocation</a>
+          <a href="#requirements">Requirements</a>
+        </nav>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar detail-topbar">
+          <div>
+            <p class="eyebrow">Frame inventory system</p>
+            <h1>QRタグでフレーム在庫を照合し、自店・他店・販売引当を管理する</h1>
+          </div>
+          <div class="top-actions">
+            <button type="button" class="ghost-button" id="resetFrame">リセット</button>
+            <button type="button" class="primary-button" id="scanFrame">QRタグ読取</button>
+          </div>
+        </header>
+
+        <section class="system-flow" aria-label="Frame inventory flow">
+          <article>
+            <span>1</span>
+            <strong>QRタグ読取</strong>
+            <p>フレームに付けたQRタグを読み取り、品番・カラー・サイズ・JAN相当の管理番号を取得。</p>
+          </article>
+          <article>
+            <span>2</span>
+            <strong>自店在庫確認</strong>
+            <p>棚、展示、バックヤード、販売引当を分けて数量を確認。</p>
+          </article>
+          <article>
+            <span>3</span>
+            <strong>他店舗在庫確認</strong>
+            <p>近隣店舗、倉庫、取り寄せ可能数を表示し、販売員が提案しやすくする。</p>
+          </article>
+          <article>
+            <span>4</span>
+            <strong>販売引当</strong>
+            <p>販売時に数量を引当し、受注・加工・受け渡しまで在庫を確保する。</p>
+          </article>
+        </section>
+
+        <section class="frame-layout">
+          <article class="panel frame-scan-panel" id="scan">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">QR tag</p>
+                <h2>QRタグ読取</h2>
+              </div>
+              <span class="live-badge" id="frameScanState">Ready</span>
+            </div>
+            <div class="frame-tag-card">
+              <div class="qr-box large" aria-label="Frame QR tag mock"></div>
+              <div>
+                <span>Frame ID</span>
+                <strong id="frameId">FR-CL4820-C1</strong>
+                <p>Classic 48□20 / Color C1 / βチタン / 標準鼻パッド</p>
+              </div>
+            </div>
+            <button type="button" class="device-button compact" id="scanFrameButton">
+              <span>SCAN</span>
+              <strong>QRタグ読取</strong>
+            </button>
+          </article>
+
+          <article class="panel stock-summary-panel" id="stock">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">This store</p>
+                <h2>自店数量</h2>
+              </div>
+              <span class="live-badge" id="stockState">Available</span>
+            </div>
+            <div class="stock-metrics">
+              <div><span>展示</span><strong id="displayQty">3</strong></div>
+              <div><span>棚</span><strong id="shelfQty">7</strong></div>
+              <div><span>引当</span><strong id="allocatedQty">2</strong></div>
+              <div><span>販売可能</span><strong id="availableQty">8</strong></div>
+            </div>
+          </article>
+
+          <article class="panel allocation-panel" id="allocation">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Sales allocation</p>
+                <h2>販売引当</h2>
+              </div>
+            </div>
+            <div class="allocation-actions">
+              <button type="button" class="primary-button" id="allocateFrame">1本 引当</button>
+              <button type="button" class="ghost-button" id="releaseFrame">引当解除</button>
+            </div>
+            <p class="announcement" id="allocationMessage">
+              販売時にフレームを引当し、加工完了まで在庫を確保します。
+            </p>
+          </article>
+        </section>
+
+        <section class="panel other-store-panel" id="stores">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Other stores</p>
+              <h2>他店舗在庫・数量確認</h2>
+            </div>
+            <span class="live-badge">Total 28</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>店舗</th>
+                  <th>展示</th>
+                  <th>棚</th>
+                  <th>引当</th>
+                  <th>販売可能</th>
+                  <th>取寄目安</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>自店</td>
+                  <td>3</td>
+                  <td>7</td>
+                  <td id="tableAllocated">2</td>
+                  <td id="tableAvailable">8</td>
+                  <td><span class="pill ok">即日</span></td>
+                </tr>
+                <tr>
+                  <td>駅前店</td>
+                  <td>2</td>
+                  <td>8</td>
+                  <td>1</td>
+                  <td>9</td>
+                  <td><span class="pill ok">翌日</span></td>
+                </tr>
+                <tr>
+                  <td>モール店</td>
+                  <td>1</td>
+                  <td>5</td>
+                  <td>2</td>
+                  <td>4</td>
+                  <td><span class="pill warn">2日</span></td>
+                </tr>
+                <tr>
+                  <td>倉庫</td>
+                  <td>0</td>
+                  <td>18</td>
+                  <td>0</td>
+                  <td>18</td>
+                  <td><span class="pill ok">翌日</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel requirements-panel" id="requirements">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Requirement notes</p>
+              <h2>フレーム在庫管理の要件メモ</h2>
+            </div>
+          </div>
+          <div class="requirements-grid">
+            <article>
+              <h3>QRタグ管理</h3>
+              <ul>
+                <li>品番、カラー、サイズ、JAN相当IDを保持</li>
+                <li>棚卸、販売、移動時にQR読取</li>
+                <li>タグ破損時は品番検索で補助</li>
+              </ul>
+            </article>
+            <article>
+              <h3>数量管理</h3>
+              <ul>
+                <li>展示、棚、バックヤードを分ける</li>
+                <li>販売引当数を販売可能数から除外</li>
+                <li>受渡完了時に確定減算</li>
+              </ul>
+            </article>
+            <article>
+              <h3>他店舗連携</h3>
+              <ul>
+                <li>他店販売可能数を確認</li>
+                <li>取り寄せ目安を表示</li>
+                <li>店舗間移動履歴を残す</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="../src/frame-inventory-system.js"></script>
+  </body>
+</html>
