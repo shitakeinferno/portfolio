@@ -5,6 +5,7 @@ PMO、業務改善、インフラ運用、DX支援の経験をまとめたレス
 ## Overview
 
 - 業務経歴をもとにした匿名化プロジェクト実績
+- 眼鏡店向け在庫・発注・販売管理モック
 - スマホ、タブレット、PC対応のレスポンシブUI
 - GitHub Pagesで公開しやすい静的サイト構成
 - GitHub Codespaces対応
@@ -27,9 +28,13 @@ python3 -m http.server 5173
 .
 ├── assets
 │   └── portfolio-hero.png
+├── demos
+│   └── optical-inventory.html
 ├── index.html
 ├── src
 │   ├── app.js
+│   ├── optical-demo.css
+│   ├── optical-demo.js
 │   └── styles.css
 ├── .devcontainer
 │   └── devcontainer.json

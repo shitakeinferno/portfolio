@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Optical store inventory and sales management mockup."
+    />
+    <title>Optical Flow Mock</title>
+    <link rel="stylesheet" href="../src/optical-demo.css" />
+  </head>
+  <body>
+    <div class="app-frame">
+      <aside class="side-panel">
+        <a class="brand" href="../index.html">
+          <span class="brand-mark">OF</span>
+          <span>
+            <strong>Optical Flow</strong>
+            <small>Inventory mock</small>
+          </span>
+        </a>
+        <nav class="side-nav" aria-label="Demo navigation">
+          <a class="active" href="#dashboard">Dashboard</a>
+          <a href="#orders">Orders</a>
+          <a href="#inventory">Inventory</a>
+          <a href="#purchase">Purchase</a>
+          <a href="#customers">Customers</a>
+        </nav>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Optical retail operations</p>
+            <h1>発注から販売までをつなぐ在庫管理モック</h1>
+          </div>
+          <div class="top-actions">
+            <button type="button" class="icon-button" aria-label="Search">⌕</button>
+            <button type="button" class="primary-button">新規受注</button>
+          </div>
+        </header>
+
+        <section class="flow-strip" aria-label="Process flow">
+          <article>
+            <span>01</span>
+            <strong>需要確認</strong>
+            <small>販売傾向と欠品予兆</small>
+          </article>
+          <article>
+            <span>02</span>
+            <strong>発注</strong>
+            <small>フレーム・レンズ手配</small>
+          </article>
+          <article>
+            <span>03</span>
+            <strong>入荷</strong>
+            <small>検品と在庫反映</small>
+          </article>
+          <article>
+            <span>04</span>
+            <strong>販売</strong>
+            <small>受注・加工・受け渡し</small>
+          </article>
+        </section>
+
+        <section class="kpi-grid" id="dashboard">
+          <article>
+            <span>本日在庫金額</span>
+            <strong>¥8.42M</strong>
+            <small>前月比 +4.8%</small>
+          </article>
+          <article>
+            <span>欠品リスク</span>
+            <strong>18 SKU</strong>
+            <small>うち至急 5件</small>
+          </article>
+          <article>
+            <span>未完了受注</span>
+            <strong>42 件</strong>
+            <small>加工待ち 11件</small>
+          </article>
+          <article>
+            <span>今月売上</span>
+            <strong>¥3.18M</strong>
+            <small>粗利率 46.2%</small>
+          </article>
+        </section>
+
+        <section class="dashboard-grid">
+          <article class="panel wide" id="orders">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Order pipeline</p>
+                <h2>受注ステータス</h2>
+              </div>
+              <button type="button" class="ghost-button">一覧</button>
+            </div>
+            <div class="order-board">
+              <div>
+                <span class="status waiting">受付</span>
+                <strong>遠近両用セット</strong>
+                <p>顧客: A-1024 / 納期: 06/03</p>
+              </div>
+              <div>
+                <span class="status progress">加工中</span>
+                <strong>薄型非球面レンズ</strong>
+                <p>顧客: B-0881 / 納期: 06/01</p>
+              </div>
+              <div>
+                <span class="status ready">受渡待ち</span>
+                <strong>キッズフレーム交換</strong>
+                <p>顧客: C-3310 / 連絡済み</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel" id="purchase">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Purchase</p>
+                <h2>発注候補</h2>
+              </div>
+            </div>
+            <ul class="purchase-list">
+              <li>
+                <span>鼻パッド S</span>
+                <strong>残 8</strong>
+              </li>
+              <li>
+                <span>βチタン 52□18</span>
+                <strong>残 2</strong>
+              </li>
+              <li>
+                <span>1.60 AS UV</span>
+                <strong>残 5</strong>
+              </li>
+            </ul>
+          </article>
+
+          <article class="panel inventory-panel" id="inventory">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Inventory</p>
+                <h2>在庫一覧</h2>
+              </div>
+              <button type="button" class="ghost-button">棚卸</button>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>品目</th>
+                    <th>カテゴリ</th>
+                    <th>在庫</th>
+                    <th>引当</th>
+                    <th>状態</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Classic 48□20 C1</td>
+                    <td>Frame</td>
+                    <td>12</td>
+                    <td>3</td>
+                    <td><span class="pill ok">適正</span></td>
+                  </tr>
+                  <tr>
+                    <td>1.67 AS Blue Cut</td>
+                    <td>Lens</td>
+                    <td>6</td>
+                    <td>5</td>
+                    <td><span class="pill warn">発注</span></td>
+                  </tr>
+                  <tr>
+                    <td>鼻パッド S</td>
+                    <td>Parts</td>
+                    <td>8</td>
+                    <td>6</td>
+                    <td><span class="pill danger">至急</span></td>
+                  </tr>
+                  <tr>
+                    <td>ケース Black</td>
+                    <td>Accessory</td>
+                    <td>44</td>
+                    <td>9</td>
+                    <td><span class="pill ok">適正</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="panel" id="customers">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Customer</p>
+                <h2>顧客対応メモ</h2>
+              </div>
+            </div>
+            <div class="memo-card">
+              <strong>前回購入から18か月</strong>
+              <p>度数変化、レンズ傷、予備眼鏡の提案タイミング。販売履歴と在庫を見ながら接客へつなぐ。</p>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="../src/optical-demo.js"></script>
+  </body>
+</html>

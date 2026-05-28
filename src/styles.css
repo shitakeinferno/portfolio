@@ -346,6 +346,49 @@ h3 {
   gap: 1rem;
 }
 
+.demo-showcase {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.8fr);
+  gap: 1rem;
+  align-items: stretch;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  padding: clamp(1rem, 3vw, 1.5rem);
+  background: var(--surface);
+}
+
+.demo-showcase p {
+  max-width: 42rem;
+  color: var(--muted);
+  line-height: 1.85;
+}
+
+.demo-button {
+  width: fit-content;
+  border-color: var(--accent);
+  background: var(--accent);
+  color: white;
+}
+
+.demo-preview {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.demo-preview span {
+  display: grid;
+  place-items: center;
+  min-height: 5.5rem;
+  border: 1px solid var(--line);
+  border-radius: 0.6rem;
+  background:
+    linear-gradient(135deg, rgba(15, 128, 103, 0.12), transparent),
+    var(--surface-soft);
+  color: var(--accent-dark);
+  font-weight: 900;
+}
+
 .skill-columns div {
   min-height: 13rem;
 }
@@ -404,6 +447,7 @@ h3 {
 
   .intro-strip,
   .strength-grid,
+  .demo-showcase,
   .skill-columns,
   .work-item {
     grid-template-columns: 1fr;
