@@ -23,7 +23,6 @@
         <nav class="side-nav" aria-label="会員照合ナビゲーション">
           <a class="active" href="#search">検索</a>
           <a href="#results">候補一覧</a>
-          <a href="#record">会員カルテ</a>
           <a href="#history">購入履歴</a>
           <a href="#requirements">設計メモ</a>
         </nav>
@@ -43,29 +42,6 @@
             <button type="button" class="primary-button" id="scanQr">QR読取</button>
           </div>
         </header>
-
-        <section class="system-flow" aria-label="会員照合の流れ">
-          <article>
-            <span>1</span>
-            <strong>QR読取</strong>
-            <p>紙の会員証、スマホ会員証、保証書、レシートに印字されたQRから会員番号を取得。</p>
-          </article>
-          <article>
-            <span>2</span>
-            <strong>手入力検索</strong>
-            <p>氏名と電話番号、電話番号のみ、会員番号、受注番号、保証書番号から候補を検索。</p>
-          </article>
-          <article>
-            <span>3</span>
-            <strong>候補確認</strong>
-            <p>同姓同名や家族共有番号に備え、電話下4桁、最終来店日、購入履歴で照合。</p>
-          </article>
-          <article>
-            <span>4</span>
-            <strong>カルテ表示</strong>
-            <p>レンズ度数、PD、乱視、特殊属性、購入履歴、保証/修理履歴を接客に使える形で表示。</p>
-          </article>
-        </section>
 
         <section class="lookup-layout" id="search">
           <article class="panel lookup-panel">
@@ -120,80 +96,18 @@
             <span class="live-badge" id="resultCount">候補3件</span>
           </div>
           <div class="candidate-list">
-            <button type="button" class="candidate-card active" data-member="A-1024">
+            <button type="button" class="candidate-card active" data-member="A-1024" data-member-label="会員 A-1024">
               <strong>会員 A-1024</strong>
               <span>電話下4桁 5678 / 最終来店 2026-04-18 / 遠近両用</span>
             </button>
-            <button type="button" class="candidate-card" data-member="F-2048">
+            <button type="button" class="candidate-card" data-member="F-2048" data-member-label="家族会員 F-2048">
               <strong>家族会員 F-2048</strong>
               <span>電話下4桁 5678 / 家族紐づけ / キッズフレーム</span>
             </button>
-            <button type="button" class="candidate-card" data-member="R-7781">
+            <button type="button" class="candidate-card" data-member="R-7781" data-member-label="保証書 R-7781">
               <strong>保証書 R-7781</strong>
               <span>保証書番号一致 / 修理履歴あり / 受渡済み</span>
             </button>
-          </div>
-        </section>
-
-        <section class="panel member-record-panel" id="record">
-          <div class="panel-heading">
-            <div>
-              <h2>会員カルテ</h2>
-            </div>
-            <span class="live-badge" id="selectedMember">A-1024</span>
-          </div>
-          <div class="record-grid">
-            <article>
-              <h3>レンズ度数</h3>
-              <div class="prescription-table-wrap">
-                <table class="prescription-table">
-                  <thead>
-                    <tr>
-                      <th>眼</th>
-                      <th>SPH</th>
-                      <th>CYL</th>
-                      <th>AXIS</th>
-                      <th>ADD</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>R</td>
-                      <td>-2.25</td>
-                      <td>-0.75</td>
-                      <td>180</td>
-                      <td>+1.50</td>
-                    </tr>
-                    <tr>
-                      <td>L</td>
-                      <td>-2.00</td>
-                      <td>-0.50</td>
-                      <td>170</td>
-                      <td>+1.50</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <p class="helper-text">SPH/CYL/ADDは0.25刻み、AXISは角度で管理。PDは 63.5mm。</p>
-            </article>
-            <article>
-              <h3>特殊属性</h3>
-              <ul class="attribute-list">
-                <li>遠近両用提案対象</li>
-                <li>ブルーライトカット希望</li>
-                <li>鼻パッド調整が必要</li>
-                <li>家族会員あり</li>
-              </ul>
-            </article>
-            <article>
-              <h3>購入・保証履歴</h3>
-              <ul class="attribute-list">
-                <li>最新処方: 2026-04-18</li>
-                <li>保証: 2027-04まで</li>
-                <li>修理: ネジ交換 1回</li>
-                <li>前回購入: 遠近両用セット</li>
-              </ul>
-            </article>
           </div>
         </section>
 
@@ -281,6 +195,71 @@
             </article>
           </div>
         </section>
+
+        <div class="member-modal" id="memberModal" role="dialog" aria-modal="true" aria-labelledby="memberModalTitle" hidden>
+          <div class="member-modal-card">
+            <div class="modal-heading">
+              <div>
+                <h2 id="memberModalTitle">会員カルテ</h2>
+                <span id="selectedMember">A-1024</span>
+              </div>
+              <button type="button" class="icon-button" id="closeMemberModal" aria-label="会員カルテを閉じる">×</button>
+            </div>
+            <div class="record-grid">
+              <article>
+                <h3>レンズ度数</h3>
+                <div class="prescription-table-wrap">
+                  <table class="prescription-table">
+                    <thead>
+                      <tr>
+                        <th>眼</th>
+                        <th>SPH</th>
+                        <th>CYL</th>
+                        <th>AXIS</th>
+                        <th>ADD</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>R</td>
+                        <td>-2.25</td>
+                        <td>-0.75</td>
+                        <td>180</td>
+                        <td>+1.50</td>
+                      </tr>
+                      <tr>
+                        <td>L</td>
+                        <td>-2.00</td>
+                        <td>-0.50</td>
+                        <td>170</td>
+                        <td>+1.50</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p class="helper-text">SPH/CYL/ADDは0.25刻み、AXISは角度で管理。PDは 63.5mm。</p>
+              </article>
+              <article>
+                <h3>特殊属性</h3>
+                <ul class="attribute-list">
+                  <li>遠近両用提案対象</li>
+                  <li>ブルーライトカット希望</li>
+                  <li>鼻パッド調整が必要</li>
+                  <li>家族会員あり</li>
+                </ul>
+              </article>
+              <article>
+                <h3>購入・保証履歴</h3>
+                <ul class="attribute-list">
+                  <li>最新処方: 2026-04-18</li>
+                  <li>保証: 2027-04まで</li>
+                  <li>修理: ネジ交換 1回</li>
+                  <li>前回購入: 遠近両用セット</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </div>
       </main>
     </div>
 
