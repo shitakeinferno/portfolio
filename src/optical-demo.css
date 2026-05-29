@@ -627,9 +627,14 @@ a.roadmap-item.is-ready::after {
   font-size: 1.35rem;
 }
 
-.order-board {
+.order-board,
+.sales-insight-grid {
   display: grid;
   gap: 0.75rem;
+}
+
+.sales-insight-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .ticket-layout,
@@ -1553,6 +1558,7 @@ a.live-badge:hover {
 }
 
 .order-board div,
+.sales-insight-grid div,
 .memo-card {
   border: 1px solid var(--line);
   border-radius: 0.6rem;
@@ -1561,12 +1567,14 @@ a.live-badge:hover {
 }
 
 .order-board strong,
+.sales-insight-grid strong,
 .memo-card strong {
   display: block;
   margin: 0.4rem 0 0.25rem;
 }
 
 .order-board p,
+.sales-insight-grid p,
 .memo-card p {
   margin: 0;
   color: var(--muted);
@@ -1782,6 +1790,7 @@ th {
   .kpi-grid,
   .work-summary-grid,
   .dashboard-grid,
+  .sales-insight-grid,
   .ticket-lab,
   .lookup-layout,
   .prescription-layout,
