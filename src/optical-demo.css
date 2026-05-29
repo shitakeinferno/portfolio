@@ -169,6 +169,7 @@ button {
 .module-map,
 .roadmap-grid,
 .kpi-grid,
+.work-summary-grid,
 .dashboard-grid,
 .system-flow,
 .ticket-lab,
@@ -177,6 +178,8 @@ button {
 .sales-layout,
 .estimate-layout,
 .stock-task-layout,
+.work-board,
+.work-detail-layout,
 .frame-layout,
 .lens-layout,
 .record-grid,
@@ -337,19 +340,34 @@ button {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
-.kpi-grid article {
+.kpi-grid article,
+.work-summary-grid article {
   display: grid;
   gap: 0.3rem;
   padding: 1rem;
 }
 
-.kpi-grid strong {
+.kpi-grid strong,
+.work-summary-grid strong {
   font-size: clamp(1.45rem, 3vw, 2rem);
 }
 
-.kpi-grid small {
+.kpi-grid small,
+.work-summary-grid small {
   color: var(--green-dark);
   font-weight: 800;
+}
+
+.work-summary-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 1rem;
+}
+
+.work-summary-grid article {
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--panel) 94%, transparent);
+  box-shadow: 0 8px 26px rgba(21, 32, 28, 0.05);
 }
 
 .dashboard-grid {
@@ -373,6 +391,16 @@ button {
 
 .sales-layout,
 .stock-task-layout {
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.75fr);
+  margin-bottom: 1rem;
+}
+
+.work-board {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 1rem;
+}
+
+.work-detail-layout {
   grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.75fr);
   margin-bottom: 1rem;
 }
@@ -871,6 +899,91 @@ button {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.work-column {
+  display: grid;
+  align-content: start;
+  gap: 0.75rem;
+  min-height: 22rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  padding: 0.85rem;
+  background: color-mix(in srgb, var(--panel) 94%, transparent);
+  box-shadow: 0 8px 26px rgba(21, 32, 28, 0.05);
+}
+
+.column-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.column-heading strong {
+  font-size: 1.05rem;
+}
+
+.work-card {
+  display: grid;
+  gap: 0.35rem;
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 0.65rem;
+  padding: 0.85rem;
+  background: var(--panel-soft);
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+}
+
+.work-card.active {
+  border-color: var(--green);
+  background: rgba(15, 128, 103, 0.14);
+}
+
+.work-card span,
+.work-card small {
+  color: var(--muted);
+  font-weight: 750;
+  line-height: 1.5;
+}
+
+.checklist-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.checklist-grid label {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 0.65rem;
+  padding: 0.85rem;
+  background: var(--panel-soft);
+  font-weight: 850;
+  line-height: 1.45;
+}
+
+.checklist-grid input {
+  width: 1rem;
+  aspect-ratio: 1;
+  flex: 0 0 auto;
+}
+
+.handoff-card {
+  display: grid;
+  gap: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 0.65rem;
+  padding: 1rem;
+  background: var(--panel-soft);
+}
+
+.handoff-card strong {
+  font-size: 1.15rem;
+}
+
 .qr-scan-frame {
   display: grid;
   gap: 0.75rem;
@@ -1293,6 +1406,7 @@ th {
   .roadmap-grid,
   .system-flow,
   .kpi-grid,
+  .work-summary-grid,
   .dashboard-grid,
   .ticket-lab,
   .lookup-layout,
@@ -1301,6 +1415,9 @@ th {
   .sales-layout,
   .estimate-layout,
   .stock-task-layout,
+  .work-board,
+  .work-detail-layout,
+  .checklist-grid,
   .frame-layout,
   .lens-layout,
   .record-grid,

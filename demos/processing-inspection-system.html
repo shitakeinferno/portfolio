@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Processing and inspection status system mock for an optical store."
+    />
+    <title>Processing and Inspection Status Mock</title>
+    <link rel="stylesheet" href="../src/optical-demo.css" />
+  </head>
+  <body>
+    <div class="app-frame">
+      <aside class="side-panel">
+        <a class="brand" href="optical-inventory.html">
+          <span class="brand-mark">WK</span>
+          <span>
+            <strong>Work Status</strong>
+            <small>Requirement mock</small>
+          </span>
+        </a>
+        <nav class="side-nav" aria-label="Processing navigation">
+          <a class="active" href="#summary">Summary</a>
+          <a href="#board">Board</a>
+          <a href="#inspection">Inspection</a>
+          <a href="#handoff">Handoff</a>
+          <a href="#requirements">Requirements</a>
+        </nav>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar detail-topbar">
+          <div>
+            <p class="eyebrow">Processing and inspection</p>
+            <h1>販売登録後の加工待ち、加工中、検品、受け渡し待ちを追跡する進捗モック</h1>
+          </div>
+          <div class="top-actions">
+            <button type="button" class="ghost-button" id="resetWork">初期状態</button>
+            <button type="button" class="primary-button" id="advanceWork">次の工程へ</button>
+          </div>
+        </header>
+
+        <section class="system-flow" aria-label="Processing flow">
+          <article>
+            <span>1</span>
+            <strong>加工待ち</strong>
+            <p>販売登録から処方、フレーム、レンズ、納期を受け取り、加工開始待ちに積む。</p>
+          </article>
+          <article>
+            <span>2</span>
+            <strong>加工中</strong>
+            <p>レンズ入荷、加工担当者、加工開始時刻、注意事項を確認して作業する。</p>
+          </article>
+          <article>
+            <span>3</span>
+            <strong>検品</strong>
+            <p>度数、PD、外観、フィッティング、付属品をチェックして不備を防ぐ。</p>
+          </article>
+          <article>
+            <span>4</span>
+            <strong>受け渡し待ち</strong>
+            <p>完了連絡、受け渡し予定、残金、保証説明を確認できる状態にする。</p>
+          </article>
+        </section>
+
+        <section class="work-summary-grid" id="summary">
+          <article>
+            <span>加工待ち</span>
+            <strong id="waitingCount">4</strong>
+            <small>うちレンズ入荷待ち 2件</small>
+          </article>
+          <article>
+            <span>加工中</span>
+            <strong id="processingCount">3</strong>
+            <small>本日完了予定 2件</small>
+          </article>
+          <article>
+            <span>検品</span>
+            <strong id="inspectionCount">2</strong>
+            <small>再確認 1件</small>
+          </article>
+          <article>
+            <span>受け渡し待ち</span>
+            <strong id="handoffCount">5</strong>
+            <small>連絡済み 4件</small>
+          </article>
+        </section>
+
+        <section class="work-board" id="board" aria-label="Work status board">
+          <article class="work-column" data-stage="waiting">
+            <div class="column-heading">
+              <span class="status waiting">Waiting</span>
+              <strong>加工待ち</strong>
+            </div>
+            <button type="button" class="work-card active" data-order="A-1024">
+              <strong>A-1024 遠近両用セット</strong>
+              <span>販売登録: 2026-05-29 / 納期: 06-05</span>
+              <small>フレーム引当済、右眼レンズ入荷待ち</small>
+            </button>
+            <button type="button" class="work-card" data-order="C-3310">
+              <strong>C-3310 単焦点レンズ</strong>
+              <span>販売登録: 2026-05-28 / 納期: 06-02</span>
+              <small>両眼レンズ在庫あり、加工開始可能</small>
+            </button>
+          </article>
+
+          <article class="work-column" data-stage="processing">
+            <div class="column-heading">
+              <span class="status progress">Processing</span>
+              <strong>加工中</strong>
+            </div>
+            <button type="button" class="work-card" data-order="B-0881">
+              <strong>B-0881 中近レンズ</strong>
+              <span>担当: 佐藤 / 開始: 14:20</span>
+              <small>薄型加工、左右取り違え注意</small>
+            </button>
+          </article>
+
+          <article class="work-column" data-stage="inspection">
+            <div class="column-heading">
+              <span class="status waiting">Inspection</span>
+              <strong>検品</strong>
+            </div>
+            <button type="button" class="work-card" data-order="D-4412">
+              <strong>D-4412 キッズフレーム</strong>
+              <span>加工完了: 15:05 / 検品待ち</span>
+              <small>鼻パッド、ネジ締め確認</small>
+            </button>
+          </article>
+
+          <article class="work-column" data-stage="ready">
+            <div class="column-heading">
+              <span class="status ready">Ready</span>
+              <strong>受け渡し待ち</strong>
+            </div>
+            <button type="button" class="work-card" data-order="E-2209">
+              <strong>E-2209 運転用メガネ</strong>
+              <span>連絡済み / 来店予定: 18:30</span>
+              <small>残金 18,000円、保証説明あり</small>
+            </button>
+          </article>
+        </section>
+
+        <section class="work-detail-layout">
+          <article class="panel inspection-panel" id="inspection">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Inspection checklist</p>
+                <h2>検品チェック</h2>
+              </div>
+              <span class="live-badge" id="selectedWork">A-1024</span>
+            </div>
+            <div class="checklist-grid">
+              <label><input type="checkbox" checked /> 処方度数と左右を確認</label>
+              <label><input type="checkbox" checked /> PDとアイポイントを確認</label>
+              <label><input type="checkbox" /> レンズ外観、キズ、コートを確認</label>
+              <label><input type="checkbox" /> フレーム歪み、ネジ、鼻パッドを確認</label>
+              <label><input type="checkbox" /> ケース、保証書、控えを同梱</label>
+              <label><input type="checkbox" /> 受け渡し説明メモを記録</label>
+            </div>
+            <p class="helper-text" id="checkProgress">2 / 6 checked</p>
+          </article>
+
+          <article class="panel handoff-panel" id="handoff">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Handoff</p>
+                <h2>受け渡し準備</h2>
+              </div>
+              <span class="live-badge" id="handoffState">Not ready</span>
+            </div>
+            <div class="handoff-card">
+              <strong>受け渡し予定</strong>
+              <dl class="member-spec">
+                <div><dt>予定日</dt><dd>2026-06-05 18:00</dd></div>
+                <div><dt>残金</dt><dd>60,400円</dd></div>
+                <div><dt>連絡</dt><dd id="contactState">検品完了後にSMS送信</dd></div>
+              </dl>
+              <button type="button" class="ghost-button" id="sendContact">完了連絡を送信</button>
+            </div>
+          </article>
+        </section>
+
+        <section class="panel requirements-panel" id="requirements">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Requirements</p>
+              <h2>必要要件</h2>
+            </div>
+          </div>
+          <div class="requirements-grid">
+            <article>
+              <h3>進捗管理</h3>
+              <ul>
+                <li>加工待ち、加工中、検品、受け渡し待ちを一覧化</li>
+                <li>納期、担当者、レンズ入荷状態を表示</li>
+                <li>工程をワンクリックで進める</li>
+              </ul>
+            </article>
+            <article>
+              <h3>検品</h3>
+              <ul>
+                <li>度数、PD、左右、外観をチェック</li>
+                <li>チェック完了率を表示</li>
+                <li>不備があれば差し戻しできる設計</li>
+              </ul>
+            </article>
+            <article>
+              <h3>受け渡し</h3>
+              <ul>
+                <li>完了連絡と来店予定を管理</li>
+                <li>残金と保証説明を確認</li>
+                <li>会員備考へ受け渡し記録を残す</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="../src/processing-inspection-system.js"></script>
+  </body>
+</html>
