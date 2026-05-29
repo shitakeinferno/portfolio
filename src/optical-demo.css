@@ -268,6 +268,7 @@ textarea:focus-visible {
 .store-flow,
 .roadmap-grid,
 .kpi-grid,
+.metric-controls,
 .work-summary-grid,
 .dashboard-grid,
 .system-flow,
@@ -523,6 +524,41 @@ a.roadmap-item.is-ready::after {
 
 .kpi-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.metric-controls {
+  grid-template-columns: auto repeat(4, minmax(0, max-content));
+  align-items: center;
+  margin-bottom: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  padding: 0.8rem 1rem;
+  background: color-mix(in srgb, var(--panel) 94%, transparent);
+}
+
+.metric-controls span {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 950;
+}
+
+.metric-controls label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0 0.65rem;
+  background: var(--panel-soft);
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 0.86rem;
+  font-weight: 850;
+}
+
+.metric-controls input {
+  accent-color: var(--green);
 }
 
 .kpi-grid article,
@@ -1853,6 +1889,7 @@ th {
   .roadmap-grid,
   .system-flow,
   .kpi-grid,
+  .metric-controls,
   .work-summary-grid,
   .dashboard-grid,
   .sales-insight-grid,

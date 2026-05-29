@@ -1,11 +1,6 @@
 const navItems = [...document.querySelectorAll(".side-nav a")];
-const issueTicket = document.querySelector("#issueTicket");
-const nextTicket = document.querySelector("#nextTicket");
-const queueCount = document.querySelector("#queueCount");
 const inventoryTabs = [...document.querySelectorAll(".inventory-tabs button")];
-
-let ticketNumber = 21;
-let waitingGroups = 7;
+const metricToggles = [...document.querySelectorAll("[data-metric-toggle]")];
 
 navItems.forEach((item) => {
   item.addEventListener("click", () => {
@@ -14,11 +9,11 @@ navItems.forEach((item) => {
   });
 });
 
-issueTicket.addEventListener("click", () => {
-  ticketNumber += 1;
-  waitingGroups += 1;
-  nextTicket.textContent = `B-${String(ticketNumber).padStart(3, "0")}`;
-  queueCount.textContent = `${waitingGroups} 組`;
+metricToggles.forEach((toggle) => {
+  toggle.addEventListener("change", () => {
+    const metric = document.querySelector(`[data-metric="${toggle.dataset.metricToggle}"]`);
+    metric.hidden = !toggle.checked;
+  });
 });
 
 inventoryTabs.forEach((tab) => {
