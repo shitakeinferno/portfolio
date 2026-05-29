@@ -41,8 +41,8 @@ function updateTotals() {
 }
 
 function setEstimateState() {
-  saleState.textContent = "Estimate";
-  stockState.textContent = "Preview";
+  saleState.textContent = "見積中";
+  stockState.textContent = "確認中";
   frameStockText.textContent = "販売確定前: 自店在庫 2本";
   lensStockText.textContent = "販売確定前: 右眼在庫 0枚、発注候補に追加予定";
   workTaskText.textContent = "販売確定後に加工待ちタスクを作成";
@@ -57,8 +57,8 @@ lineItems.forEach((item) => {
 });
 
 confirmSale.addEventListener("click", () => {
-  saleState.textContent = "Registered";
-  stockState.textContent = "Allocated";
+  saleState.textContent = "販売確定";
+  stockState.textContent = "引当済み";
   frameStockText.textContent = "販売確定後: 自店在庫 2本 → 1本、販売引当済";
   lensStockText.textContent = "販売確定後: 右眼レンズを発注候補に登録済";
   workTaskText.textContent = "販売確定後: 加工待ちタスクを作成済";
@@ -72,7 +72,7 @@ confirmSale.addEventListener("click", () => {
     <span class="status ready">完了</span>
   `;
   afterSaleTasks.prepend(registeredTask);
-  taskCount.textContent = `${afterSaleTasks.children.length} tasks`;
+  taskCount.textContent = `${afterSaleTasks.children.length}件`;
 });
 
 resetSale.addEventListener("click", () => {

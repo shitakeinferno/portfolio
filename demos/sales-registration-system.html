@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Estimate and sales registration system demo for an optical store."
+      content="眼鏡店向けの販売確認画面。見積、販売登録、在庫引当、加工タスクを確認する。"
     />
-    <title>Estimate and Sales Registration Demo</title>
+    <title>販売確認</title>
     <link rel="stylesheet" href="../src/optical-demo.css" />
   </head>
   <body>
@@ -16,28 +16,27 @@
         <a class="brand" href="optical-inventory.html">
           <span class="brand-mark">SL</span>
           <span>
-            <strong>Sales Register</strong>
-            <small>System demo</small>
+            <strong>販売確認</strong>
+            <small>業務システム</small>
           </span>
         </a>
-        <nav class="side-nav" aria-label="Sales registration navigation">
-          <a class="active" href="#customer">Customer</a>
-          <a href="#estimate">Estimate</a>
-          <a href="#stock">Stock</a>
-          <a href="#tasks">Tasks</a>
-          <a href="#requirements">Requirements</a>
+        <nav class="side-nav" aria-label="販売確認ナビゲーション">
+          <a class="active" href="#customer">会員・処方</a>
+          <a href="#estimate">見積</a>
+          <a href="#stock">在庫引当</a>
+          <a href="#tasks">販売後タスク</a>
+          <a href="#requirements">設計メモ</a>
         </nav>
-        <div class="home-links" aria-label="Home links">
-          <a href="../index.html">Portfolio Home</a>
-          <a href="optical-inventory.html">System Top</a>
+        <div class="home-links" aria-label="戻りリンク">
+          <a href="../index.html">ポートフォリオTOP</a>
+          <a href="optical-inventory.html">業務システムTOP</a>
         </div>
       </aside>
 
       <main class="workspace">
         <header class="topbar detail-topbar">
           <div>
-            <p class="eyebrow">Estimate and sales registration</p>
-            <h1>見積から販売確定まで、在庫引当と加工タスクを一気通貫で登録する販売システム</h1>
+            <h1>販売確認</h1>
           </div>
           <div class="top-actions">
             <button type="button" class="ghost-button" id="resetSale">見積に戻す</button>
@@ -45,37 +44,13 @@
           </div>
         </header>
 
-        <section class="system-flow" aria-label="Sales flow">
-          <article>
-            <span>1</span>
-            <strong>会員・処方確認</strong>
-            <p>会員情報、用途、確定処方、購入履歴を確認して販売内容を組み立てる。</p>
-          </article>
-          <article>
-            <span>2</span>
-            <strong>商品選択</strong>
-            <p>フレーム、レンズ、オプションを選び、在庫と不足品を同時に確認する。</p>
-          </article>
-          <article>
-            <span>3</span>
-            <strong>見積提示</strong>
-            <p>値引き、キャンペーン、支払方法、前金・残金を含めて合計を提示する。</p>
-          </article>
-          <article>
-            <span>4</span>
-            <strong>販売登録</strong>
-            <p>販売確定後に在庫引当、発注候補、加工・検品タスクを自動作成する。</p>
-          </article>
-        </section>
-
         <section class="sales-layout" id="customer">
           <article class="panel customer-summary-panel">
             <div class="panel-heading">
               <div>
-                <p class="eyebrow">Customer and prescription</p>
                 <h2>会員・処方</h2>
               </div>
-              <a class="live-badge" href="prescription-input-system.html">Prescription Detail</a>
+              <a class="live-badge" href="prescription-input-system.html">処方入力へ</a>
             </div>
             <div class="customer-summary-card">
               <strong>A-1024 サンプル 太郎</strong>
@@ -90,10 +65,9 @@
           <article class="panel payment-panel">
             <div class="panel-heading">
               <div>
-                <p class="eyebrow">Payment</p>
                 <h2>支払予定</h2>
               </div>
-              <span class="live-badge" id="saleState">Estimate</span>
+              <span class="live-badge" id="saleState">見積中</span>
             </div>
             <div class="payment-grid">
               <label>
@@ -121,10 +95,9 @@
           <article class="panel estimate-panel">
             <div class="panel-heading">
               <div>
-                <p class="eyebrow">Estimate items</p>
                 <h2>見積明細</h2>
               </div>
-              <span class="live-badge">Tax included</span>
+              <span class="live-badge">税込</span>
             </div>
             <div class="line-item-list">
               <label class="line-item">
@@ -165,7 +138,6 @@
           <article class="panel total-panel">
             <div class="panel-heading">
               <div>
-                <p class="eyebrow">Total</p>
                 <h2>金額確認</h2>
               </div>
             </div>
@@ -186,10 +158,9 @@
           <article class="panel stock-allocation-panel">
             <div class="panel-heading">
               <div>
-                <p class="eyebrow">Stock allocation</p>
                 <h2>在庫引当</h2>
               </div>
-              <span class="live-badge" id="stockState">Preview</span>
+              <span class="live-badge" id="stockState">確認中</span>
             </div>
             <div class="allocation-list">
               <article>
@@ -213,7 +184,6 @@
           <article class="panel receipt-panel">
             <div class="panel-heading">
               <div>
-                <p class="eyebrow">Documents</p>
                 <h2>帳票・控え</h2>
               </div>
             </div>
@@ -229,10 +199,9 @@
         <section class="panel purchase-history-panel" id="tasks">
           <div class="panel-heading">
             <div>
-              <p class="eyebrow">After sale tasks</p>
               <h2>販売後タスク</h2>
             </div>
-            <span class="live-badge" id="taskCount">3 tasks</span>
+            <span class="live-badge" id="taskCount">3件</span>
           </div>
           <div class="history-list" id="afterSaleTasks">
             <article>
@@ -262,8 +231,7 @@
         <section class="panel requirements-panel" id="requirements">
           <div class="panel-heading">
             <div>
-              <p class="eyebrow">Requirements</p>
-              <h2>必要要件</h2>
+              <h2>販売確認の要件メモ</h2>
             </div>
           </div>
           <div class="requirements-grid">
