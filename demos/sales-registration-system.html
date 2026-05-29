@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Estimate and sales registration system mock for an optical store."
+    />
+    <title>Estimate and Sales Registration Mock</title>
+    <link rel="stylesheet" href="../src/optical-demo.css" />
+  </head>
+  <body>
+    <div class="app-frame">
+      <aside class="side-panel">
+        <a class="brand" href="optical-inventory.html">
+          <span class="brand-mark">SL</span>
+          <span>
+            <strong>Sales Register</strong>
+            <small>Requirement mock</small>
+          </span>
+        </a>
+        <nav class="side-nav" aria-label="Sales registration navigation">
+          <a class="active" href="#customer">Customer</a>
+          <a href="#estimate">Estimate</a>
+          <a href="#stock">Stock</a>
+          <a href="#tasks">Tasks</a>
+          <a href="#requirements">Requirements</a>
+        </nav>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar detail-topbar">
+          <div>
+            <p class="eyebrow">Estimate and sales registration</p>
+            <h1>見積から販売確定まで、在庫引当と加工タスクを一気通貫で登録するモック</h1>
+          </div>
+          <div class="top-actions">
+            <button type="button" class="ghost-button" id="resetSale">見積に戻す</button>
+            <button type="button" class="primary-button" id="confirmSale">販売確定</button>
+          </div>
+        </header>
+
+        <section class="system-flow" aria-label="Sales flow">
+          <article>
+            <span>1</span>
+            <strong>会員・処方確認</strong>
+            <p>会員情報、用途、確定処方、購入履歴を確認して販売内容を組み立てる。</p>
+          </article>
+          <article>
+            <span>2</span>
+            <strong>商品選択</strong>
+            <p>フレーム、レンズ、オプションを選び、在庫と不足品を同時に確認する。</p>
+          </article>
+          <article>
+            <span>3</span>
+            <strong>見積提示</strong>
+            <p>値引き、キャンペーン、支払方法、前金・残金を含めて合計を提示する。</p>
+          </article>
+          <article>
+            <span>4</span>
+            <strong>販売登録</strong>
+            <p>販売確定後に在庫引当、発注候補、加工・検品タスクを自動作成する。</p>
+          </article>
+        </section>
+
+        <section class="sales-layout" id="customer">
+          <article class="panel customer-summary-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Customer and prescription</p>
+                <h2>会員・処方</h2>
+              </div>
+              <a class="live-badge" href="prescription-input-system.html">Prescription Detail</a>
+            </div>
+            <div class="customer-summary-card">
+              <strong>A-1024 サンプル 太郎</strong>
+              <dl class="member-spec">
+                <div><dt>用途</dt><dd>遠近両用、夜間運転多め</dd></div>
+                <div><dt>処方</dt><dd>R -2.25 / -0.75 x 180、L -2.00 / -0.50 x 170</dd></div>
+                <div><dt>PD</dt><dd>63.5 mm</dd></div>
+              </dl>
+            </div>
+          </article>
+
+          <article class="panel payment-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Payment</p>
+                <h2>支払予定</h2>
+              </div>
+              <span class="live-badge" id="saleState">Estimate</span>
+            </div>
+            <div class="payment-grid">
+              <label>
+                <span>支払方法</span>
+                <select id="paymentMethod">
+                  <option>クレジットカード</option>
+                  <option>現金</option>
+                  <option>QR決済</option>
+                  <option>分割</option>
+                </select>
+              </label>
+              <label>
+                <span>前金</span>
+                <input id="depositAmount" type="number" min="0" step="1000" value="20000" />
+              </label>
+              <label>
+                <span>受け渡し予定</span>
+                <input id="deliveryDate" type="date" value="2026-06-05" />
+              </label>
+            </div>
+          </article>
+        </section>
+
+        <section class="estimate-layout" id="estimate">
+          <article class="panel estimate-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Estimate items</p>
+                <h2>見積明細</h2>
+              </div>
+              <span class="live-badge">Tax included</span>
+            </div>
+            <div class="line-item-list">
+              <label class="line-item">
+                <input type="checkbox" checked data-price="28600" data-stock="frame" />
+                <span>
+                  <strong>Classic 48□20 C1</strong>
+                  <small>フレーム / 自店在庫 2本</small>
+                </span>
+                <em>28,600円</em>
+              </label>
+              <label class="line-item">
+                <input type="checkbox" checked data-price="46200" data-stock="lens" />
+                <span>
+                  <strong>1.67 遠近両用 UVコート</strong>
+                  <small>左右レンズ / 右眼のみ不足アラート</small>
+                </span>
+                <em>46,200円</em>
+              </label>
+              <label class="line-item">
+                <input type="checkbox" checked data-price="6600" />
+                <span>
+                  <strong>ブルーライトカット</strong>
+                  <small>オプション加工</small>
+                </span>
+                <em>6,600円</em>
+              </label>
+              <label class="line-item">
+                <input type="checkbox" data-price="3300" />
+                <span>
+                  <strong>安心保証プラス</strong>
+                  <small>破損・調整サポート</small>
+                </span>
+                <em>3,300円</em>
+              </label>
+            </div>
+          </article>
+
+          <article class="panel total-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Total</p>
+                <h2>金額確認</h2>
+              </div>
+            </div>
+            <label class="discount-control">
+              <span>値引き</span>
+              <input id="discountAmount" type="number" min="0" step="500" value="3000" />
+            </label>
+            <dl class="total-list">
+              <div><dt>小計</dt><dd id="subtotal">0円</dd></div>
+              <div><dt>値引き</dt><dd id="discountDisplay">0円</dd></div>
+              <div><dt>合計</dt><dd id="grandTotal">0円</dd></div>
+              <div><dt>残金</dt><dd id="balanceAmount">0円</dd></div>
+            </dl>
+          </article>
+        </section>
+
+        <section class="stock-task-layout" id="stock">
+          <article class="panel stock-allocation-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Stock allocation</p>
+                <h2>在庫引当</h2>
+              </div>
+              <span class="live-badge" id="stockState">Preview</span>
+            </div>
+            <div class="allocation-list">
+              <article>
+                <span class="status ready">自店</span>
+                <strong>フレーム 1本引当</strong>
+                <p id="frameStockText">販売確定前: 自店在庫 2本</p>
+              </article>
+              <article>
+                <span class="status waiting">不足</span>
+                <strong>右眼レンズ 発注候補</strong>
+                <p id="lensStockText">販売確定前: 右眼在庫 0枚、発注候補に追加予定</p>
+              </article>
+              <article>
+                <span class="status progress">加工</span>
+                <strong>加工・検品へ連携</strong>
+                <p id="workTaskText">販売確定後に加工待ちタスクを作成</p>
+              </article>
+            </div>
+          </article>
+
+          <article class="panel receipt-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Documents</p>
+                <h2>帳票・控え</h2>
+              </div>
+            </div>
+            <div class="receipt-actions">
+              <button type="button" class="ghost-button">見積書</button>
+              <button type="button" class="ghost-button">お客様控え</button>
+              <button type="button" class="ghost-button">加工指示書</button>
+              <button type="button" class="ghost-button">発注フォーマット</button>
+            </div>
+          </article>
+        </section>
+
+        <section class="panel purchase-history-panel" id="tasks">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">After sale tasks</p>
+              <h2>販売後タスク</h2>
+            </div>
+            <span class="live-badge" id="taskCount">3 tasks</span>
+          </div>
+          <div class="history-list" id="afterSaleTasks">
+            <article>
+              <div>
+                <strong>レンズ発注候補</strong>
+                <p>右眼 1.67 遠近両用 R -2.25 / -0.75 x 180 をメーカー発注へ追加</p>
+              </div>
+              <span class="status waiting">未確定</span>
+            </article>
+            <article>
+              <div>
+                <strong>加工待ち</strong>
+                <p>フレーム引当後、レンズ入荷を待って加工開始</p>
+              </div>
+              <span class="status progress">予定</span>
+            </article>
+            <article>
+              <div>
+                <strong>受け渡し連絡</strong>
+                <p>2026-06-05 18:00までに検品完了後、SMS連絡</p>
+              </div>
+              <span class="status ready">予定</span>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel requirements-panel" id="requirements">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Requirements</p>
+              <h2>必要要件</h2>
+            </div>
+          </div>
+          <div class="requirements-grid">
+            <article>
+              <h3>見積</h3>
+              <ul>
+                <li>商品・オプションの追加削除</li>
+                <li>値引き、キャンペーン、税込合計</li>
+                <li>前金と残金の表示</li>
+              </ul>
+            </article>
+            <article>
+              <h3>販売登録</h3>
+              <ul>
+                <li>販売確定時に在庫引当</li>
+                <li>不足品を発注候補へ追加</li>
+                <li>加工・検品ステータスを作成</li>
+              </ul>
+            </article>
+            <article>
+              <h3>帳票</h3>
+              <ul>
+                <li>見積書とお客様控え</li>
+                <li>加工指示書</li>
+                <li>メーカー発注用フォーマット</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="../src/sales-registration-system.js"></script>
+  </body>
+</html>
