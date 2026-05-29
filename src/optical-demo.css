@@ -690,6 +690,26 @@ a.roadmap-item.is-ready::after {
   grid-column: span 1;
 }
 
+.queue-panel {
+  order: 1;
+}
+
+.member-panel {
+  order: 2;
+}
+
+.purchase-panel {
+  order: 3;
+}
+
+.inventory-panel {
+  order: 4;
+}
+
+.panel.wide {
+  order: 5;
+}
+
 .panel-heading {
   display: flex;
   align-items: start;
